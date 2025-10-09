@@ -24,6 +24,7 @@ class CategoryRepository:
             self.db.delete(deletedcategory)
             self.db.commmit()
             self.db.refresh(deletedcategory)
+            
     def getcategorybyId(self,category_id:int)->Category:
         return self.db.query(Category).filter(Category.id==category_id).first()
 
