@@ -6,7 +6,7 @@ from config.database import get_db
 
 
 
-class Product:
+class ProductRepository:
     def __init__(self,db:Session=Depends(get_db)):
         self.db=db
 
