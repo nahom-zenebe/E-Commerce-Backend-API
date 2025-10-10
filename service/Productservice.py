@@ -1,7 +1,7 @@
 from typing import List
 from repository.ProductRepository import ProductRepository
 from schemas.ProductSchema import ProductBase,ProductCreate,ProductResponse
-
+from fastapi import Depends
 
 class Productservice:
     productrepository:ProductRepository

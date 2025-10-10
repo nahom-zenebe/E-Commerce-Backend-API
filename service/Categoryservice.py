@@ -1,0 +1,26 @@
+from typing import List
+from repository.CategoryRepository import CategoryRepository
+from fastapi import Depends
+from schemas.CategorySchema import CategoryBase,CategoryCreate,CategoryResponse
+
+
+class Categoryservice:
+    categoryrepository:CategoryRepository
+
+    def __init__(self,categoryrepository:CategoryRepository=Depends[]):
+        self.categoryrepository=categoryrepository
+
+    def createcategory(self,category:CategoryCreate)->CategoryResponse:
+        return self.categoryrepository.createCategory(category)
+
+    def getallcategory(self):
+        return self.categoryrepository.getallcategory()
+
+    def getcategorybyId(self,category_id:int)->CategoryResponse:
+        return self.categoryrepository.getcategorybyId(category_id)
+
+    def deletecategory(self, category_id:int)->None:
+        return self.categoryrepository.deletecategory(category_id)
+
+    def updatedcategory(self, category_id:int, category:Category)->CategoryResponse:
+        return self.categoryrepository.updatedcategory(category_id,category))
