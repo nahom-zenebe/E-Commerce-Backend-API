@@ -2,12 +2,11 @@ from typing import List
 from repository.CategoryRepository import CategoryRepository
 from fastapi import Depends
 from schemas.Categoryschemas import CategoryBase,CategoryCreate,CategoryResponse
-
+from sqlalchemy.orm import Session, lazyload
 
 class Categoryservice:
-    categoryrepository:CategoryRepository
 
-    def __init__(self,categoryrepository:CategoryRepository=Depends(CategoryRepository),db:Session):
+    def __init__(self,db:Session):
         self.db=db
         self.categoryrepository=categoryrepository
 

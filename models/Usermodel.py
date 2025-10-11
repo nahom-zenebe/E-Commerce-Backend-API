@@ -1,4 +1,5 @@
-from sqlalchemy import Integer,String,Column,DateTime,func
+from sqlalchemy import Integer,String,Column,DateTime,func,Enum
+from sqlalchemy.orm import  relationship
 from config.database import Base
 import enum
 
@@ -28,4 +29,4 @@ class RevokedToken(Base):
     jti=Column(String(225),unique=True,nullable=False,index=True)
     token_type=Column(String(20),nullable=False) #access or refresh token
     revoked_at=Column(DateTime(timezone=True),server_default=func.now())
-    
+

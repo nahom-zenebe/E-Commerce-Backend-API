@@ -1,15 +1,15 @@
 import os
-import datetime import datetime,timedelta
+from datetime import datetime,timedelta
 from typing import Tuple
-import passlib.context import CryptoContext
+from passlib.context import CryptContext
 from jose import jwt,JWTError
 from pydantic import ValidationError
 from schemas.Userschemas  import TokenPayload
 import uuid
 
-pwd_context=CryptoContext(schemas=['bcrypt'],deprecated="auto")
+pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
 
-SECRET_KEY=os.get("SECRET_KEY")
+SECRET_KEY=os.getenv("SECRET_KEY")
 ALGORITHM='HS256'
 ACCESS_TOKEN_EXPIRE_MINUTES=int(os.getenv("ACCESS_TOKEN_EXPIRE_MINUTES","15"))
 REFRESH_TOKEN_EXPIRE_DAYS = int(os.getenv("REFRESH_TOKEN_EXPIRE_DAYS","7"))

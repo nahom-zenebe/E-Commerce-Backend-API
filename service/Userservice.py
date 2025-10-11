@@ -3,10 +3,10 @@ from repository.UserRepository import UserRepository
 from fastapi import Depends,status,HTTPException
 from schemas.Userschemas import UserBase,UserCreate,UserResponse
 from core.security import get_password_hash,verify_password,create_jwt_token,decode_jwt_token
+from sqlalchemy.orm import Session, lazyload
 
 
-
-class AuthService:
+class Userservice:
     def __init__(self,db:Session):
         self.db=db
         self.userrepository=UserRepository

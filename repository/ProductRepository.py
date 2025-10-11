@@ -7,7 +7,7 @@ from config.database import get_db
 
 
 class ProductRepository:
-    def __init__(self,db:Session=Depends(get_db)):
+    def __init__(self,db:Session):
         self.db=db
 
     def createproduct(self,product:Product)->Product:

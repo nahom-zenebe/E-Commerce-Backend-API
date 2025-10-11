@@ -6,7 +6,7 @@ from config.database import get_db
 
 
 class CategoryRepository:
-    def __init__(self,db:Session=Depends(get_db)):
+    def __init__(self,db:Session):
         self.db=db
 
     def createCategory(self,category:Category)-> Category:

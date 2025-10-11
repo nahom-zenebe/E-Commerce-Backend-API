@@ -1,4 +1,4 @@
-from Productschemas import ProductResponse
+
 from typing import Optional
 from datetime import datetime
 from enum import Enum
@@ -25,7 +25,7 @@ class UserCreate(UserBase):
 
 class UserResponse(UserBase):
     id: int
-    order: List[OrderResponse] = []
+    #order: List[OrderResponse] = []
 
     class Config:
         orm_mode=True
@@ -40,4 +40,3 @@ class TokenPayload(BaseModel):
     exp:Optional[str]=None
     jti:Optional[str]=None
     token_type:Optional[str]=None
-    

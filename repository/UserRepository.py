@@ -3,7 +3,8 @@ from sqlalchemy.orm import Session, lazyload
 from fastapi import Depends
 from models.Categorymodel import Category
 from config.database import get_db
-from models.User import  RevokedToken,User
+from sqlalchemy.orm import Session, lazyload
+from models.Usermodel import  RevokedToken,User
 
 
 
@@ -31,4 +32,4 @@ class UserRepository:
 
     def is_jti_revoked(self,jti:str)->bool:
         return self.db.query(RevokedToken).filter(RevokedToken.jti==jti).first() is not None
-        
+

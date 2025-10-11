@@ -2,13 +2,10 @@ from typing import List
 from repository.ProductRepository import ProductRepository
 from schemas.Productschemas import ProductBase,ProductCreate,ProductResponse
 from fastapi import Depends
-
+from sqlalchemy.orm import Session, lazyload
 class Productservice:
     
-  
-
-
-    def __init__(self,productrepository:ProductRepository=Depends(ProductRepository),db:Session):
+    def __init__(self,db:Session):
         self.db=db
         self.productrepository=productrepository
 
