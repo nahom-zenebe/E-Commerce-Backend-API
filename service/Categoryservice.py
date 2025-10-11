@@ -7,7 +7,8 @@ from schemas.Categoryschemas import CategoryBase,CategoryCreate,CategoryResponse
 class Categoryservice:
     categoryrepository:CategoryRepository
 
-    def __init__(self,categoryrepository:CategoryRepository=Depends(CategoryRepository)):
+    def __init__(self,categoryrepository:CategoryRepository=Depends(CategoryRepository),db:Session):
+        self.db=db
         self.categoryrepository=categoryrepository
 
     def createcategory(self,category:CategoryCreate)->CategoryResponse:

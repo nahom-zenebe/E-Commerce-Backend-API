@@ -4,10 +4,12 @@ from schemas.Productschemas import ProductBase,ProductCreate,ProductResponse
 from fastapi import Depends
 
 class Productservice:
-    productrepository:ProductRepository
+    
+  
 
 
-    def __init__(self,productrepository:ProductRepository=Depends(ProductRepository)):
+    def __init__(self,productrepository:ProductRepository=Depends(ProductRepository),db:Session):
+        self.db=db
         self.productrepository=productrepository
 
     def createproduct(self,product:ProductCreate)->ProductResponse:
