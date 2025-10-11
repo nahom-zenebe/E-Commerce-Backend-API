@@ -1,6 +1,7 @@
 from fastapi import FastAPI 
 import uvicorn
-
+from  router.Productrouter import product_router
+from router.Category import category_router
 app=FastAPI( title="E-commerce",
            description="E-commerce backend app",
            version="1.0.0",
@@ -8,7 +9,8 @@ app=FastAPI( title="E-commerce",
            redoc_url="/redoc")
 
 
-
+app.include_router(category_router)
+app.include_router(product_router)
 
 
 @app.get("/")
