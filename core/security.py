@@ -23,7 +23,7 @@ def verify_password(plain_password:str,hashed_password:str)->bool:
     return pwd_context.verify(plain_password,hashed_password)
 
 def create_jwt_token(subject:str,token_type:str="access")->Tuple[str,dict]:
-    jiti=str(uuid.uuid4())
+    jti=str(uuid.uuid4())
     now=datetime.utcnow()
     if token_type=="access":
         expire=now+timedelta(minutes=ACCESS_TOKEN_EXPIRE_MINUTES)
