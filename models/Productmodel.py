@@ -1,7 +1,8 @@
 
-import sqlalchemy import Integer,String,Column,DateTime,ForeignKey
-import sqlalchemy.orm import relationship
-import config.database import Base
+from sqlalchemy import Integer,String,Column,DateTime,ForeignKey
+from  sqlalchemy.orm import relationship
+from  config.database import Base
+from sqlalchemy.sql import func
 
 
 

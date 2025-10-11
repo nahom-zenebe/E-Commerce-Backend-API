@@ -1,10 +1,7 @@
-from Productschemas import ProductResponse
-from typing import Optional
+from typing import Optional, List
 from datetime import datetime
 from enum import Enum
 from pydantic import BaseModel
-from typing import List
-from Categoryschemas import CategoryResponse
 
 
 class ProductBase(BaseModel):
@@ -20,7 +17,6 @@ class ProductCreate(ProductBase):
 
 class ProductResponse(ProductBase):
     id:int
-    category:CategoryResponse
 
     class Config:
         orm_mode=True

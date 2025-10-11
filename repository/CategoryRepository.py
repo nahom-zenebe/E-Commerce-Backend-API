@@ -22,7 +22,7 @@ class CategoryRepository:
         deletedcategory=self.db.query(Category).filter(Category.id==category_id).first()
         if deletedcategory:
             self.db.delete(deletedcategory)
-            self.db.commmit()
+            self.db.commit()
             self.db.refresh(deletedcategory)
             
     def getcategorybyId(self,category_id:int)->Category:
@@ -30,11 +30,11 @@ class CategoryRepository:
 
 
     def updatedcategory(self,category_id:int,category:Category)-> Category:
-        updatedcategory=self.db.query(Category).filter(Category.id==category_id):
+        updatedcategory=self.db.query(Category).filter(Category.id==category_id)
         if updatedcategory:
             updatedcategory.name=category.name
             updatedcategory.description=category.description
-            self.db.commmit()
+            self.db.commit()
             self.db.refresh(updatedcategory)
             return updatedcategory
 

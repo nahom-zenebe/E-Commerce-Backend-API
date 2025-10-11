@@ -12,7 +12,7 @@ class ProductRepository:
 
     def createproduct(self,product:Product)->Product:
         self.db.add(product)
-        self.db.commmit()
+        self.db.commit()
         self.db.refresh()
         return product
 

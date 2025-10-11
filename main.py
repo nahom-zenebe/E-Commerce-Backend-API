@@ -1,7 +1,7 @@
 from fastapi import FastAPI 
 import uvicorn
-from  router.Productrouter import product_router
-from router.Category import category_router
+from router.Productrouter import router as product_router
+from router.Categoryrouter import router as category_router
 app=FastAPI( title="E-commerce",
            description="E-commerce backend app",
            version="1.0.0",

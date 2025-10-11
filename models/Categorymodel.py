@@ -1,6 +1,7 @@
-import sqlalchemy import Column,Integer,String,DateTime,func
+from sqlalchemy import Column,Integer,String,DateTime,func
 from sqlalchemy.orm import relationship
-import config.database import Base
+from config.database import Base
+from sqlalchemy.sql import func
 
 
 
