@@ -21,7 +21,7 @@ class UserBase(BaseModel):
     updated_at: Optional[datetime] = None
 
 class UserCreate(UserBase):
-    password: str
+    hashed_password: str
 
 class UserResponse(UserBase):
     id: int
@@ -29,3 +29,15 @@ class UserResponse(UserBase):
 
     class Config:
         orm_mode=True
+
+class Token(BaseModel):
+    access_token:str
+    refresh_token:Optional[str]
+    token_type:str="bearer"
+
+class TokenPayload(BaseModel):
+    sub:Optional[str]=None
+    exp:Optional[str]=None
+    jti:Optional[str]=None
+    token_type:Optional[str]=None
+    
