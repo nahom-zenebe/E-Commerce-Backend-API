@@ -3,6 +3,9 @@ import uvicorn
 from router.Productrouter import router as product_router
 from router.Userrouter import router as auth_router
 from router.Categoryrouter import router as category_router
+from router.Paymentrouter import router as payment_router
+
+
 app=FastAPI( title="E-commerce",
            description="E-commerce backend app",
            version="1.0.0",
@@ -13,6 +16,7 @@ app=FastAPI( title="E-commerce",
 app.include_router(category_router)
 app.include_router(product_router)
 app.include_router(auth_router)
+app.include_router(payment_router)
 
 
 @app.get("/")
