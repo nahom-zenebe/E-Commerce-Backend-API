@@ -25,6 +25,8 @@ class Order(Base):
     user_id=Column(Integer,ForeignKey("user.id"),nullable=False)
     product_id=Column(Integer,ForeignKey("product.id"),nullable=False)
     total_amount=Column(Integer, nullable=False)   
+    payment=relationship("Payment",back_populates='order',uselist=False)
+    payment_id=Column(Integer,ForeignKey("payment.id"),nullable=True)
     status=Column(Enum(Status),server_default=Status.PENDING,nullable=False)
     created_at=Column(DateTime(timezone=True), server_default=func.now())
     updated_at=Column(DateTime(timezone=True),server_default=func.now())
