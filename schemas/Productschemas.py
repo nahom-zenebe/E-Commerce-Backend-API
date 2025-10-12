@@ -10,13 +10,14 @@ class ProductBase(BaseModel):
     price:int
     quantity:int
     category_id:int
-    created_at:Optional[datetime]=None
-    updated_at:Optional[datetime]=None
+
 class ProductCreate(ProductBase):
     pass
 
 class ProductResponse(ProductBase):
     id:int
+    created_at:Optional[datetime]=None
+    updated_at:Optional[datetime]=None
 
     class Config:
         orm_mode=True
