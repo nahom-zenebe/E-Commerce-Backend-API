@@ -8,7 +8,7 @@ class Categoryservice:
 
     def __init__(self,db:Session):
         self.db=db
-        self.categoryrepository=categoryrepository
+        self.categoryrepository=CategoryRepository(self.db)
 
     def createcategory(self,category:CategoryCreate)->CategoryResponse:
         return self.categoryrepository.createCategory(category)

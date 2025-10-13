@@ -4,6 +4,7 @@ from router.Productrouter import router as product_router
 from router.Userrouter import router as auth_router
 from router.Categoryrouter import router as category_router
 from router.Paymentrouter import router as payment_router
+from router.Orderrouter import router as order_router
 
 
 app=FastAPI( title="E-commerce",
@@ -17,6 +18,7 @@ app.include_router(category_router)
 app.include_router(product_router)
 app.include_router(auth_router)
 app.include_router(payment_router)
+app.include_router(order_router)
 
 
 @app.get("/")

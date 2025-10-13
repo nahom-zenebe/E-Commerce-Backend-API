@@ -9,7 +9,7 @@ from sqlalchemy.orm import Session, lazyload
 class Userservice:
     def __init__(self,db:Session):
         self.db=db
-        self.userrepository=UserRepository
+        self.userrepository=UserRepository(self.db)
 
     def signup(self,user:UserCreate):
         exisiting=self.userrepository.get_by_email(user.email)

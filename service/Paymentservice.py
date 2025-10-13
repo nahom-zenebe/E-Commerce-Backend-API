@@ -9,7 +9,7 @@ stripe.api_key="api key"
 
 class PaymentService:
     def __init__(self,db:Session):
-        self.PaymentRepository=PaymentRepository
+        self.paymentrepository=PaymentRepository(self.db)
 
 
     def create_payment_intent(self,order_id:int):
@@ -25,7 +25,7 @@ class PaymentService:
             metadata={"order_id":order_id}
 
         )
-        payment=self.PaymentRepository.create_payment(
+        payment=self.paymentrepository.create_payment(
             order_id=order.id,
             stripe_payment_id=intent["id"],
             amount=order.total_amount,

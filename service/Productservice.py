@@ -3,11 +3,13 @@ from repository.ProductRepository import ProductRepository
 from schemas.Productschemas import ProductBase,ProductCreate,ProductResponse
 from fastapi import Depends
 from sqlalchemy.orm import Session, lazyload
+
+
 class Productservice:
     
     def __init__(self,db:Session):
         self.db=db
-        self.productrepository=productrepository
+        self.productrepository=ProductRepository(self.db)
 
     def createproduct(self,product:ProductCreate)->ProductResponse:
         return self.productrepository.createproduct(product)
