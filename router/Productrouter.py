@@ -10,32 +10,37 @@ router=APIRouter(prefix="/product",tags=['product'])
 
 @router.post("/createproduct",response_model=ProductResponse,status_code=status.HTTP_201_CREATED)
 def createproduct(product:ProductCreate,db:Session=Depends(get_db)):
+    service=Productservice(db)
     if product is None:
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND)
 
-    return Productservice.createproduct(product,db)
+    return service.createproduct(product,db)
 
 @router.get("/getallproduct",response_model=List[ProductResponse],status_code=status.HTTP_200_OK)
 def getallproduct(db:Session=Depends(get_db)):
-    return Productservice.getallproduct(db)
+    service=Productservice(db)
+    return service.getallproduct(db)
 
 @router.get("/getproductbyId/{product_id}",response_model=ProductResponse,status_code=status.HTTP_200_OK)
 def getproductbyId(product_id:int,db:Session=Depends(get_db)):
+    service=Productservice(db)
     if not product_id:
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND)
 
-    return Productservice.getproductbyId(product_id,db)
+    return service.getproductbyId(product_id,db)
 
 @router.put("/updatedproduct",response_model=ProductResponse)
 def updatedproduct(product:ProductBase,product_id:int,db:Session=Depends(get_db)):
+    service=Productservice(db)
     if not product_id or product:
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND)
 
-    return Productservice.updatedproduct(product,product_id,db)
+    return service.updatedproduct(product,product_id,db)
 
 @router.delete("/deleteproduct")
 def deleteproduct(product_id:int,db:Session=Depends(get_db)):
+    service=Productservice(db)
     if not product_id:
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND)
 
-    return Productservice.deleteproduct(product_id,db)
+    return service.deleteproduct(product_id,db)
