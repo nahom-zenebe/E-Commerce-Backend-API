@@ -1,10 +1,12 @@
-from fastapi import FastAPI 
+from fastapi import FastAPI,Request
 import uvicorn
 from router.Productrouter import router as product_router
 from router.Userrouter import router as auth_router
 from router.Categoryrouter import router as category_router
 from router.Paymentrouter import router as payment_router
 from router.Orderrouter import router as order_router
+import logging
+from middleware.logging_middleware import LoggingMiddleware
 
 
 app=FastAPI( title="E-commerce",
@@ -13,7 +15,18 @@ app=FastAPI( title="E-commerce",
            docs_url="/",
            redoc_url="/redoc")
 
+logging.basicConfig(
+    filename="app.log",
+    level=logging.INFO,
+    format="%(asctime)s [%(levelname)s] %(message)s",
+    datefmt="%Y-%m-%d %H:%M:%S"
+)
 
+logger = logging.getLogger(__name__)
+
+
+
+app.add_middleware(LoggingMiddleware)
 app.include_router(category_router)
 app.include_router(product_router)
 app.include_router(auth_router)
