@@ -4,7 +4,7 @@ from enum import Enum
 from pydantic import BaseModel,Field
 
 
-class Status(str,enum):
+class Status(str,Enum):
     PENDING="pending"
     SHIPPED="shipped"
     DElIVERED="delivered"

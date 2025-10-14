@@ -1,6 +1,6 @@
 import stripe
 from repository.PaymentRepository import PaymentRepository
-from repository.OrderRepository import OrderRepository
+from repository.OrderReposiotry import OrderReposiotry
 from sqlalchemy.orm import Session
 
 
@@ -36,7 +36,7 @@ class PaymentService:
     def handle_webhook_payment(self,stripe_event:dict):
         event_type = stripe_event["type"]
         data = stripe_event["data"]["object"]
-        if event_type="payment_intent.succeeded":
+        if event_type=="payment_intent.succeeded":
             payment = self.payment_repo.db.query(Payment).filter(
             Payment.stripe_payment_id == data["id"]
             ).first()

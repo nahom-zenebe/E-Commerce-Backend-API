@@ -2,13 +2,14 @@ from pydantic import BaseModel,Field
 from datetime import datetime
 from enum import Enum
 from pydantic import BaseModel,Field
+from  typing import Optional
 
-class Status(str,enum):
+class Status(str,Enum):
     PENDING="pending"
     PAID="paid"
     FAILED='failed'
 
-class Payment_method(str,enum):
+class Payment_method(str,Enum):
     CREDITCARD="creditcard"
     Paypal='paypal'
     MASTERCARD='mastercard'

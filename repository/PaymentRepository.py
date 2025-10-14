@@ -1,7 +1,7 @@
 from typing import List, Optional
 from sqlalchemy.orm import Session, lazyload
 from fastapi import Depends
-from models.Productmodel import Productmodel
+from models.Paymentmodel import Payment
 from config.database import get_db
 
 

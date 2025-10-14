@@ -2,8 +2,8 @@
 from fastapi import FastAPI,HTTPException,status,APIRouter
 from sqlalchemy.orm import Session
 from config.database  import get_db
-from schemas.Paymentmodel import PaymentCreate,PaymentResponse,PaymentBase
-from service.PaymentService import PaymentService
+from schemas.Paymentschemas import PaymentCreate,PaymentResponse,PaymentBase
+from service.Paymentservice import PaymentService
 from fastapi import Depends
 from typing import List
 
