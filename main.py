@@ -7,7 +7,7 @@ from router.Paymentrouter import router as payment_router
 from router.Orderrouter import router as order_router
 import logging
 from middleware.logging_middleware import LoggingMiddleware
-
+from middleware.AuthMiddleware import AuthMiddleware
 
 app=FastAPI( title="E-commerce",
            description="E-commerce backend app",
@@ -22,14 +22,15 @@ logging.basicConfig(
     datefmt="%Y-%m-%d %H:%M:%S"
 )
 
+
 logger = logging.getLogger(__name__)
 
-
-
 app.add_middleware(LoggingMiddleware)
+
+app.include_router(auth_router)
+app.add_middleware(AuthMiddleware)
 app.include_router(category_router)
 app.include_router(product_router)
-app.include_router(auth_router)
 app.include_router(payment_router)
 app.include_router(order_router)
 
