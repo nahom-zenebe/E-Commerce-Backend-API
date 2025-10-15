@@ -5,6 +5,7 @@ from router.Userrouter import router as auth_router
 from router.Categoryrouter import router as category_router
 from router.Paymentrouter import router as payment_router
 from router.Orderrouter import router as order_router
+from router.Reviewrouter import router as Reviewrouter
 import logging
 from middleware.logging_middleware import LoggingMiddleware
 from middleware.AuthMiddleware import AuthMiddleware
@@ -31,6 +32,7 @@ app.include_router(auth_router)
 app.add_middleware(AuthMiddleware)
 app.include_router(category_router)
 app.include_router(product_router)
+app.include_router(Reviewrouter)
 app.include_router(payment_router)
 app.include_router(order_router)
 
