@@ -20,13 +20,13 @@ def createcategory(category:CategoryCreate,db:Session=Depends(get_db)):
     if category is None:
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Category not found")
 
-    return service.createcategory(category,db)
+    return service.createcategory(category)
     
 
 @router.get("/getcategory",status_code=status.HTTP_200_OK,response_model=List[CategoryResponse])
 def getallcategory(db:Session=Depends(get_db)):
     service=Categoryservice(db)
-    return service.getallcategory(db)
+    return service.getallcategory()
 
 @router.delete("/deletecategory/{category_id}")
 def deletecategory(category_id:int, db:Session=Depends(get_db)):
@@ -34,7 +34,7 @@ def deletecategory(category_id:int, db:Session=Depends(get_db)):
     if category_id is None:
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Category not found")
 
-    return  service.deletecategory(category_id,db)
+    return service.deletecategory(category_id)
 
 @router.put("/updatecategory/{category_id}")
 def updatedcategory(category_id:int, category:CategoryBase, db:Session=Depends(get_db)):
@@ -42,7 +42,7 @@ def updatedcategory(category_id:int, category:CategoryBase, db:Session=Depends(g
     if category or category_id is None:
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Category not found")
 
-    return service.updatedcategory(category_id, category, db)
+    return service.updatedcategory(category_id, category)
 
 @router.get("/getcategorybyId/{category_id}")
 def getcategorybyId(category_id:int, db:Session=Depends(get_db)):
@@ -50,4 +50,4 @@ def getcategorybyId(category_id:int, db:Session=Depends(get_db)):
     if category is None:
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Category not found")
 
-    return  service.getcategorybyId(category_id, db)
+    return service.getcategorybyId(category_id)

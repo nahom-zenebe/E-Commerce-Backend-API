@@ -14,12 +14,12 @@ def createproduct(product:ProductCreate,db:Session=Depends(get_db)):
     if product is None:
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND)
 
-    return service.createproduct(product,db)
+    return service.createproduct(product)
 
 @router.get("/getallproduct",response_model=List[ProductResponse],status_code=status.HTTP_200_OK)
 def getallproduct(db:Session=Depends(get_db)):
     service=Productservice(db)
-    return service.getallproduct(db)
+    return service.getallproduct()
 
 @router.get("/getproductbyId/{product_id}",response_model=ProductResponse,status_code=status.HTTP_200_OK)
 def getproductbyId(product_id:int,db:Session=Depends(get_db)):
@@ -27,7 +27,7 @@ def getproductbyId(product_id:int,db:Session=Depends(get_db)):
     if not product_id:
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND)
 
-    return service.getproductbyId(product_id,db)
+    return service.getproductbyId(product_id)
 
 @router.put("/updatedproduct",response_model=ProductResponse)
 def updatedproduct(product:ProductBase,product_id:int,db:Session=Depends(get_db)):
@@ -35,7 +35,7 @@ def updatedproduct(product:ProductBase,product_id:int,db:Session=Depends(get_db)
     if not product_id or product:
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND)
 
-    return service.updatedproduct(product,product_id,db)
+    return service.updatedproduct(product,product_id)
 
 @router.delete("/deleteproduct")
 def deleteproduct(product_id:int,db:Session=Depends(get_db)):
@@ -43,4 +43,4 @@ def deleteproduct(product_id:int,db:Session=Depends(get_db)):
     if not product_id:
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND)
 
-    return service.deleteproduct(product_id,db)
+    return service.deleteproduct(product_id)

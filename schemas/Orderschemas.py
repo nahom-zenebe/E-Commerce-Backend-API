@@ -13,10 +13,10 @@ class Status(str,Enum):
 
 class OrderBase(BaseModel):
     total_amount:int=Field(...,gt=0)
-    status:Status=Status.PENDING,
+    status:Status=Status.PENDING
 
 
-class Ordercreate(OrderBase):
+class OrderCreate(OrderBase):
     user_id:str
     product_id:str
 

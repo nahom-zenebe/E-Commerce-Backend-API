@@ -1,5 +1,5 @@
 from typing import List
-from repository.OrderReposiotry import OrderReposiotry
+from repository.OrderReposiotry import OrderRepository
 from fastapi import Depends
 from schemas.Orderschemas import OrderBase,OrderCreate,OrderResponse
 from sqlalchemy.orm import Session
@@ -8,7 +8,7 @@ from sqlalchemy.orm import Session
 class OrderService:
     def __init__(self,db:Session):
         self.db=db
-        self.orderrepository=OrderReposiotry(self.db)
+        self.orderrepository=OrderRepository(self.db)
 
 
     def createorder(self,order:OrderCreate)->OrderResponse:

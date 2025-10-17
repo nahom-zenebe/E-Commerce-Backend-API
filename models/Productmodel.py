@@ -14,6 +14,7 @@ class Product(Base):
     price=Column(Integer, nullable=False)
     quantity=Column(Integer, nullable=False)
     category_id=Column(Integer,ForeignKey("category.id"))
+    category=relationship("Category",back_populates="product")
     created_at=Column(DateTime(timezone=True),server_default=func.now())    
     updated_at=Column(DateTime(timezone=True), server_default=func.now())
 

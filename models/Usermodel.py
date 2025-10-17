@@ -18,7 +18,7 @@ class User(Base):
     phone_number=Column(String,nullable=False)
     address=Column(String,nullable=False)
     role=Column(Enum(Role),default=Role.USER,nullable=False)
-    order=relationship("Order",back_populates="users", cascade="all, delete-orphan")
+    orders=relationship("Order",back_populates="user", cascade="all, delete-orphan")
     created_at=Column(DateTime(timezone=True),server_default=func.now())
     updated_at=Column(DateTime(timezone=True),server_default=func.now())
     

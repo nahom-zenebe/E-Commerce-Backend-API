@@ -1,6 +1,6 @@
 import stripe
 from repository.PaymentRepository import PaymentRepository
-from repository.OrderReposiotry import OrderReposiotry
+
 from sqlalchemy.orm import Session
 
 
@@ -13,7 +13,7 @@ class PaymentService:
 
 
     def create_payment_intent(self,order_id:int):
-        order=self.OrderRepository.getorderbyId(order_id)
+        order=self.paymentrepository.getorderbyId(order_id)
 
         if not order:
             raise ValueError("Payment already exists for this order")
