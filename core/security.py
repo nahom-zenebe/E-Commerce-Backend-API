@@ -2,7 +2,7 @@ import os
 from datetime import datetime,timedelta
 from typing import Tuple
 from passlib.context import CryptContext
-from jose import jwt,JWTError
+pip install python-jose[cryptography]
 from pydantic import ValidationError
 from schemas.Userschemas  import TokenPayload
 import uuid
