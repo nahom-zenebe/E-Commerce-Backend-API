@@ -10,6 +10,7 @@ import logging
 from middleware.logging_middlware import LoggingMiddleware
 from middleware.Authmiddleware import AuthMiddleware
 from config.database import Base,engine
+from fastapi.middleware.cors import CORSMiddleware
 
 app=FastAPI( title="E-commerce",
            description="E-commerce backend app",
@@ -24,6 +25,19 @@ logging.basicConfig(
     datefmt="%Y-%m-%d %H:%M:%S"
 )
 
+
+origins=[
+    'http://localhost:3000',
+    'http://localhost:3001'
+]
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origin=origins,
+    allow_method=['*'],
+    allow_credentials=True,
+   allow_header=['*']
+)
 
 logger = logging.getLogger(__name__)
 
