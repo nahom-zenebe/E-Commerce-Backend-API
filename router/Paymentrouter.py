@@ -1,5 +1,5 @@
 
-from fastapi import FastAPI,Request,HTTPException,status,APIRouter
+from fastapi import FastAPI,Request,HTTPException,status,APIRouter,BackgroundTasks, Depends
 from sqlalchemy.orm import Session
 from config.database  import get_db
 from schemas.Paymentschemas import PaymentCreate,PaymentResponse,PaymentBase
@@ -44,3 +44,8 @@ async def stripe_webhook(request:Request,db:Session=Depends(get_db)):
     service = PaymentService(db)
     service.handle_webhook_payment(event)
     return {"status": "success"}
+
+@router.post("/confirm")
+async def confirm_payment(payment_data:dict,background_tasks:BackgroundTasks,service=PaymentService=Depends()):
+    return await service.confirm_payment(payment_data,background_tasks)
+    

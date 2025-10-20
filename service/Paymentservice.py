@@ -1,15 +1,16 @@
 import stripe
 from repository.PaymentRepository import PaymentRepository
-
+from core.message import send_payment_email
 from sqlalchemy.orm import Session
 
-
+from fastapi import BackgroundTasks
 
 stripe.api_key="api key"
 
 class PaymentService:
-    def __init__(self,db:Session):
+    def __init__(self,db:Session,stripe_client):
         self.paymentrepository=PaymentRepository(self.db)
+        self.stripe = stripe_client
 
 
     def create_payment_intent(self,order_id:int):
@@ -32,7 +33,19 @@ class PaymentService:
             status="pending"
         )
         return intent.client_secret
+    
+    def confirm_payment(self,payment_data,background_tasks:BackgroundTasks):
+        payment_intent=self.stripe.PaymentIntent.retrieve(payment_data["id"])
+        if payment_intent.status=="succeeded":
+            payment=self.paymentrepository.get_payment_by_order(payment_data["metadata"]["order_id"])
+            payment.status="succeeded"
+            self.paymentrepository.db.commit()
+            background_tasks.add_task(send_payment_email, payment.user.email, payment.order_id, payment.amount)
+            return {"status":"success"}
 
+
+
+        
     def handle_webhook_payment(self,stripe_event:dict):
         event_type = stripe_event["type"]
         data = stripe_event["data"]["object"]
